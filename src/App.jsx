@@ -1,18 +1,14 @@
-import Banner from "./components/Clases/Banner";
-import EjemploContador from "./components/Clases/EjemploContador"
+import NavBar from "./components/NavBar/NavBar"
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
 import "./App.css"
 
 function App() {
 
-  const saludo = () => {
-    alert("saludos desde App")
-  }
-
   return (
-    <>
-     <NavBar />
-     <ItemListContainer />
-    </>
+    <div>
+      <NavBar />
+      <ItemListContainer greeting={"Bienvenidos a Mr. Jugo"} />
+    </div>
     
   )
 }
