@@ -1,4 +1,9 @@
 import CartWidget from "./CartWidget"
+import { NavLink } from "react-router-dom"
+import { RiDrinks2Line } from "react-icons/ri";
+
+
+
 import "./navbar.scss"
 
 const NavBar = () => {
@@ -14,13 +19,16 @@ const NavBar = () => {
 
             </div>
 
-            <ul class="categorias">
+            <ul className="categorias">
                 {
                     categorias.map( (categoria) => {
-                        return <li>{categoria}</li>
+                        return <NavLink>{categoria}</NavLink>
                     })
                 }
             </ul>
+
+            <RiDrinks2Line />
+
 
             <CartWidget />
         </nav>
