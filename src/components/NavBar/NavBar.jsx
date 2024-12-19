@@ -1,16 +1,16 @@
 import CartWidget from "./CartWidget"
-import { NavLink } from "react-router-dom"
 import { RiDrinks2Line } from "react-icons/ri";
-
+import { NavLink } from "react-router-dom"
+import { NavLink, Link, useNavigate } from "react-router-dom"
 
 
 import "./navbar.scss"
 
 const NavBar = () => {
 
-    const categorias = ["Jugos", "Helados", "Comida", "Nosotros"]
+    const navigate = useNavigate()
+
     return (
-        
         <nav className="navbar bg-success border-bottom border-body sticky-top">
 
             <div className="logo">
@@ -19,16 +19,18 @@ const NavBar = () => {
 
             </div>
 
+            <button onClick={ () => navigate(-1) }>Ir para atrás</button>
+
             <ul className="categorias">
-                {
-                    categorias.map( (categoria) => {
-                        return <NavLink>{categoria}</NavLink>
-                    })
-                }
+                <NavLink to="/category/Jugos" className={ ( { isActive }) => isActive ? "category-active" : "category" } >Jugos</NavLink>
+                <NavLink to="/category/Comida" className={ ( { isActive }) => isActive ? "category-active" : "category" } >Comida</NavLink>
+                <NavLink to="/category/Merch" className={ ( { isActive }) => isActive ? "category-active" : "category" } >Merch</NavLink>
             </ul>
 
-            <RiDrinks2Line />
-
+            <Link to="/" className="brand primary-font-color">
+                <RiDrinks2Line className="icon-brand" />
+                <p className="title-brand">Mr. Jugo</p>
+            </Link>
 
             <CartWidget />
         </nav>
