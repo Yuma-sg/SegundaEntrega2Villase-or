@@ -14,13 +14,14 @@ function App() {
         <Routes>
           <Route path="/" element={ <ItemListContainer greeting={"Bienvenidos a Mr. Jugo"} /> } />
           <Route path="/category/:idCategory" element={ <ItemListContainer greeting={"Bienvenidos a Mr. Jugo"} /> } />
-          <Route path="/detail/:idProduct" element={ ItemDetailContainer} />
+          <Route path="/detail/:idProduct" element={ <ItemDetailContainer /> } />
+
+
+          <Route path="*" element={ <div>Error 404 - Página no encontrada</div>} />
         </Routes>
-        
-        <Route path="*" element={ <div>Error 404 - Página no encontrada</div> } />
-      </BrowserRouter>
+
+      </BrowserRouter>  
     </div>
-    
   )
 }
 
