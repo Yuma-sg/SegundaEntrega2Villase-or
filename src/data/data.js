@@ -5,7 +5,7 @@ const products = [
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quae laborum laudantium beatae illo odit id alias consequuntur voluptas natus ex itaque animi eum voluptatibus reiciendis recusandae, ad dolorum, veritatis iste? Harum, sequi quia enim fugiat excepturi temporibus error? Laboriosam corporis nesciunt sunt et dignissimos excepturi, in ex explicabo suscipit.",
         price: 400,
         stock: 10,
-        image: "/img/jugo-g.png",
+        image: ["/img/jugo-g.png", "/img/jugo-m.png", "/img/jugo-ch.png"],
         category: "jugos"
     },
     {
