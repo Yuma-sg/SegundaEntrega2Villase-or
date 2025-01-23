@@ -6,15 +6,16 @@ import "./itemdetail.css"
 
 
 const ItemDetail = ({ product }) => {
+    const [showItemCount, setShowItemCount] = useState(true)
     const { addProduct } = useContext(CartContext)
 
-    const AddProductInCart = (count) => {
+    const addProductInCart = (count) => {
         //producto que va al carrito
         const ProductCart = { ...product, quantity: count }
 
         addProduct(productCart)
 
-        console.log(productCart)
+        setShowItemCount(false)
     }
     const [currentImage, setCurrentImage] = useState(product.image[0])
 
@@ -40,8 +41,11 @@ const ItemDetail = ({ product }) => {
                 <h2 className="title-detail">{product.name}</h2>
                 <p className="text-detail">{product.description}</p>
                 <p className="text-detail">Precio: ${product.price}</p>
-
-                <ItemCount stock={product.stock} AddProductInCart={AddProductInCart} />
+                showItemCount === true ? (
+                    <ItemCount stock={product.stock} addProductInCart={addProductInCart} />
+                ) : (
+                    <Link to="/cart">Terminar mi comprar</Link>
+                )
             </div>
         </div>
     )

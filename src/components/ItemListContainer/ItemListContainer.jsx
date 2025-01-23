@@ -1,42 +1,40 @@
 import { useState, useEffect } from "react"
 import ItemList from "./ItemList.jsx"
 import { useParams } from "react-router-dom"
-import { SyncLoader } from "react-spinners"
+import { collection, getDocs } from "firebase/firestore"
+import db from "../../db/db.js"
 import "./itemlistcontainer.css"
  
 const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState ([])
-  const [loading, setLoading] = useState(false)
 
   const { idCategory } = useParams()
 
+  const collectionName = collection(db, "products")
+
+  const getProducts = async() => {
+    try {
+      const dataDb = await getDocs(collectionName)
+
+      const data = dataDb.docs.map((productDb)=> { 
+        return {id: productoDb.id, ...productDb.data() }
+      })
+
+      setProducts(data)
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
-    setLoading(true)
-
     getProducts()
-    .then((data) => {
-
-      if(idCategory){
-        const productsFilter = data.filter((product) => product.category === idCategory )
-        setProducts(productsFilter)
-      }else{
-        setProducts(data)
-      }
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-    .finally(() => {
-      setLoading(false)
-    })
   }, [idCategory])
 
   return (
     <div className="itemlistcontainer">
       <h1>{greeting}</h1>
-      {
-        loading === true ? ( <div style={{ height: "80vh", display: "flex", justifyContent:"center", alignItems:"center"}}> <CircleLoader color="#ff8200" /> </div> ) : ( <ItemList products={products} /> )
-      }
+      <ItemList products={products} />
     </div>
   )
 }
