@@ -1,15 +1,16 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { PiShoppingCartFill } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 const CartWidget = () => {
-  const { saludo, saludando } = useContext(CartContext)
+  const { totalQuantity } = useContext(CartContext)
 
   return (
-    <div className="cartwidget" onClick={saludando}>
+    <Link to="/cart" className="cartwidget" onClick={saludando}>
         <PiShoppingCartFill className="icon-cartwidget" />
-        <p className="number-cartWidget">8</p>
-    </div>
+        <p className="number-cartWidget"> { totalQuantity() } </p>
+    </Link>
   )
 }
 export default CartWidget

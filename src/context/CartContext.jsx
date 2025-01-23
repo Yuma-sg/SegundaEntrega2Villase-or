@@ -1,17 +1,26 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 const CartContext = createContext()
 
 const CartProvider = ({children}) => {
+    const [cart, setCart] = useState([])
+    
+    const addProduct = (newProduct) => {
+        setCart( [ ...cart, newProduct ] )
+    }
 
-    const saludo = "Bienvenid@ a Mr. Jugo"
+    const totalQuantity = () => {
+        const quantity = cart.reduce( (total, productCart) => total + productCart.quantity , 0 )
+        return quantity
+    }
 
-    const saludando = () => {
-        alert("Te saludo humano adicto al jugo")
+    const totalPrice = () => {
+        const price = cart.reduce( (total, productCart) => totaL + ( productCart.quantity * productCart.price ) , 0 )
+        return price
     }
 
     return(
-        <CartContext.Provider value={ { saludo, saludando } }>
+        <CartContext.Provider value={ { cart, addProduct, totalQuantity, totalPrice } }>
             {children}
         </CartContext.Provider>
     )
