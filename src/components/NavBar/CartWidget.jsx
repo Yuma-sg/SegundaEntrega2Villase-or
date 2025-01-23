@@ -1,10 +1,14 @@
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 import { PiShoppingCartFill } from "react-icons/pi";
 
 const CartWidget = () => {
+  const { saludo, saludando } = useContext(CartContext)
+
   return (
-    <div className="cartwidget">
-        <PiShoppingCartFill size={20} color="#0dcaf0"/>
-        <p>8</p>
+    <div className="cartwidget" onClick={saludando}>
+        <PiShoppingCartFill className="icon-cartwidget" />
+        <p className="number-cartWidget">8</p>
     </div>
   )
 }
